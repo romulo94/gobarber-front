@@ -26,4 +26,26 @@ export function* singIn({ payload }) {
   }
 }
 
-export default all([takeLatest(Types.SIGN_IN_REQUEST, singIn)]);
+export function* singUp({ payload }) {
+  try {
+    const { name, email, password } = payload;
+
+    yield call(api.post, '/users', {
+      name,
+      email,
+      password,
+      provider: true,
+    });
+
+    history.push('/dashboard');
+  } catch (error) {
+    toast.error('Falha no cadastro. Verifique seus dados.');
+
+    yield put(signFailure());
+  }
+}
+
+export default all([
+  takeLatest(Types.SIGN_IN_REQUEST, singIn),
+  takeLatest(Types.SIGN_UP_REQUEST, singUp),
+]);

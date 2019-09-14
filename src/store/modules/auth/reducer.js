@@ -23,6 +23,11 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
 
+      case Types.SIGN_UP_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+
       case Types.SIGN_FAILURE: {
         draft.loading = false;
         break;
