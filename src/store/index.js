@@ -6,7 +6,7 @@ import rootSaga from './modules/rootSaga';
 
 const sagaMonitor =
   process.env.NODE_ENV === 'development'
-    ? console.tron.createSagaMonitor
+    ? console.tron.createSagaMonitor()
     : null;
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
