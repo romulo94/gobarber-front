@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { Types } from './actions';
+import { Types as TypesAuth } from './actions';
 
 const INITIAL_STATE = {
   token: null,
@@ -11,25 +11,31 @@ const INITIAL_STATE = {
 export default function auth(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case Types.SIGN_IN_REQUEST: {
+      case TypesAuth.SIGN_IN_REQUEST: {
         draft.loading = true;
         break;
       }
 
-      case Types.SIGN_IN_SUCCESS: {
+      case TypesAuth.SIGN_IN_SUCCESS: {
         draft.token = action.payload.token;
         draft.signed = true;
         draft.loading = false;
         break;
       }
 
-      case Types.SIGN_UP_REQUEST: {
+      case TypesAuth.SIGN_UP_REQUEST: {
         draft.loading = true;
         break;
       }
 
-      case Types.SIGN_FAILURE: {
+      case TypesAuth.SIGN_FAILURE: {
         draft.loading = false;
+        break;
+      }
+
+      case TypesAuth.SIGN_OUT: {
+        draft.token = null;
+        draft.signed = false;
         break;
       }
 
