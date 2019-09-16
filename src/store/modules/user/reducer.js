@@ -1,19 +1,25 @@
 import produce from 'immer';
 
-import { Types as TypesAtuh } from '~/store/modules/auth/actions';
+import { Types as TypesAuth } from '~/store/modules/auth/actions';
+import { Types as TypesUser } from '~/store/modules/user/actions';
 
 const INITIAL_STATE = {
   profile: null,
 };
 
 export default function user(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case TypesAtuh.SIGN_IN_SUCCESS:
-      return produce(state, draft => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case TypesAuth.SIGN_IN_SUCCESS: {
         draft.profile = action.payload.user;
-      });
+        break;
+      }
+      case TypesUser.UPDATE_PROFILE_SUCCESS: {
+        draft.profile = action.payload.profile;
+        break;
+      }
 
-    default:
-      return state;
-  }
+      default:
+    }
+  });
 }
