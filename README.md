@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This a small project. In gobarber the user can schedule and choose the provider. In the SPA, o provider can see all appointments.
 
 ## Available Scripts
 
