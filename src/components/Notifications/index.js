@@ -22,6 +22,10 @@ export default function Notifications() {
     [notifications]
   );
 
+  const numberNotfications = useMemo(() => notifications.length, [
+    notifications,
+  ]);
+
   useEffect(() => {
     async function loadNotifications() {
       const response = await api.get('notifications');
@@ -65,20 +69,24 @@ export default function Notifications() {
 
       <NotificationList visible={visible}>
         <Scroll>
-          {notifications.map(notification => (
-            <Notification key={notification._id} unread={!notification.read}>
-              <p>{notification.content}</p>
-              <time>{notification.timeDistance}</time>
-              {!notification.read && (
-                <button
-                  type="button"
-                  onClick={() => handleMarkAsRead(notification._id)}
-                >
-                  Marcar como lida.
-                </button>
-              )}
-            </Notification>
-          ))}
+          {numberNotfications ? (
+            notifications.map(notification => (
+              <Notification key={notification._id} unread={!notification.read}>
+                <p>{notification.content}</p>
+                <time>{notification.timeDistance}</time>
+                {!notification.read && (
+                  <button
+                    type="button"
+                    onClick={() => handleMarkAsRead(notification._id)}
+                  >
+                    Marcar como lida.
+                  </button>
+                )}
+              </Notification>
+            ))
+          ) : (
+            <span>Você nao possui notificações.</span>
+          )}
         </Scroll>
       </NotificationList>
     </Container>
