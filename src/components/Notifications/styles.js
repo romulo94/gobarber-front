@@ -48,6 +48,10 @@ export const NotificationList = styled.div`
     border-right: 20px solid transparent;
     border-bottom: 20px solid rgba(0, 0, 0, 0.6);
   }
+
+  span {
+    color: #fff;
+  }
 `;
 
 export const Notification = styled.div`
