@@ -15,6 +15,12 @@ export const Container = styled.div`
     button {
       border: 0;
       background: none;
+
+      transition: opacity 0.25s;
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
 
     strong {
@@ -50,5 +56,22 @@ export const Time = styled.li`
     display: block;
     margin-top: 3px;
     color: ${props => (props.available ? '#666' : '#7159c1')};
+  }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  margin-top: 40px;
+  align-self: center;
+
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;
